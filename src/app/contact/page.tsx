@@ -46,9 +46,6 @@ export default function ContactPage() {
               <br />
               Lets Talk.
             </h1>
-            <p className="mt-4 max-w-xl text-base text-slate-700 sm:text-xl">
-              Have a question, need assistance, or want to learn more about our services? Our team is ready to help.
-            </p>
           </div>
 
           <div className="order-1 relative min-h-[300px] lg:order-2">
@@ -72,36 +69,39 @@ export default function ContactPage() {
           </article>
 
           <article className="grid gap-4 rounded-2xl border border-[var(--line)] bg-white p-5 sm:p-6">
-            <h2 className="text-3xl text-[var(--brand-green-900)] sm:text-4xl">Contact Information</h2>
-            <div className="mt-3 grid grid-cols-2 gap-3 items-start sm:gap-4">
-              <div className="grid gap-3">
-                {contactItems.map((item) => (
-                  <div key={item.title}>
-                    {contactIcons[item.title] ? (
-                      <div className="flex items-start gap-3">
-                        <span className="mt-1 grid h-9 w-9 place-items-center rounded-full bg-[#e5eee5] text-[var(--brand-green-900)]">
-                          {contactIcons[item.title]}
-                        </span>
-                        <div>
+            <div className="grid gap-4 lg:grid-cols-[1fr_1.1fr]">
+              <div className="rounded-2xl border border-[var(--line)] bg-[#f7f9f6] p-5 sm:p-6">
+                <h2 className="text-3xl text-[var(--brand-green-900)] sm:text-4xl">Contact Information</h2>
+                <div className="mt-4 space-y-4">
+                  {contactItems.map((item) => (
+                    <div key={item.title}>
+                      {contactIcons[item.title] ? (
+                        <div className="flex items-start gap-3">
+                          <span className="mt-1 grid h-9 w-9 place-items-center rounded-full bg-[#e5eee5] text-[var(--brand-green-900)]">
+                            {contactIcons[item.title]}
+                          </span>
+                          <div>
+                            <h3 className="text-base font-semibold text-[var(--brand-green-900)]">{item.title}</h3>
+                            {item.body.map((line) => (
+                              <p key={line} className="text-sm text-slate-700">
+                                {line}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      ) : (
+                        <>
+                          <h3 className="text-xl font-bold text-[var(--brand-green-900)]">{item.title}</h3>
                           {item.body.map((line) => (
                             <p key={line} className="text-base text-slate-700">
                               {line}
                             </p>
                           ))}
-                        </div>
-                      </div>
-                    ) : (
-                      <>
-                        <h3 className="text-xl font-bold text-[var(--brand-green-900)]">{item.title}</h3>
-                        {item.body.map((line) => (
-                          <p key={line} className="text-base text-slate-700">
-                            {line}
-                          </p>
-                        ))}
-                      </>
-                    )}
-                  </div>
-                ))}
+                        </>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="rounded-2xl border border-[var(--line)] bg-[#e6ece4] p-5 sm:p-6">
