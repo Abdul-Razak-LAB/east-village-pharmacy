@@ -129,7 +129,7 @@ export default function AboutPage() {
 
             <div className="mt-7 grid gap-3 sm:mx-auto sm:max-w-[640px] sm:grid-cols-3 lg:max-w-none">
               <a
-                href="tel:+14705550123"
+                href="tel:+17707442461"
                 className="inline-flex items-center justify-center gap-3 rounded-2xl border border-[#1f3750] bg-[#10253c] px-5 py-4 text-3xl font-bold text-white transition hover:brightness-105 sm:text-[2rem]"
               >
                 <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -150,7 +150,7 @@ export default function AboutPage() {
               </a>
 
               <a
-                href="https://wa.me/233209225268?text=Hi%20East%20Village%20Pharmacy%2C%20I%20have%20a%20question."
+                href="https://wa.me/17707442461?text=Hi%20East%20Village%20Pharmacy%2C%20I%20have%20a%20question."
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-3 rounded-2xl border border-[#0ea371] bg-[#0da06e] px-5 py-4 text-3xl font-bold text-[#041828] transition hover:brightness-105 sm:text-[2rem]"

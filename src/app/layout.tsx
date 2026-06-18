@@ -113,7 +113,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
 
         <a
-          href="https://wa.me/233209225268?text=Hi%20East%20Village%20Pharmacy%2C%20I%20would%20like%20to%20book%20a%20consultation%20meeting."
+          href="https://wa.me/17707442461?text=Hi%20East%20Village%20Pharmacy%2C%20I%20would%20like%20to%20book%20a%20consultation%20meeting."
           target="_blank"
           rel="noreferrer"
           aria-label="Book Meeting on WhatsApp"
@@ -161,7 +161,7 @@ export default function RootLayout({
               <div className="mt-3 space-y-2 text-sm text-emerald-50">
                 <p>12450 Crabapple Rd, Suite 210</p>
                 <p>Alpharetta, GA 30004</p>
-                <p>(470) 555-0123</p>
+                <p>(770) 744-2461</p>
                 <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
                 <p>Saturday: 10:00 AM - 2:00 PM</p>
                 <p>Sunday: Closed</p>

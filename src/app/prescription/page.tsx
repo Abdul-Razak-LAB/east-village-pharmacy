@@ -99,7 +99,7 @@ export default function PrescriptionPage() {
             <p className="text-3xl sm:text-5xl">We are here to make your health journey easier.</p>
           </div>
           <div>
-            <p className="text-lg">(212) 555-1234</p>
+            <p className="text-lg">(770) 744-2461</p>
             <p className="mt-1 text-lg">info@eastvillagepharmacy.com</p>
           </div>
           <a href="/consultation" className="btn-silentech-secondary px-6 py-3 text-lg">

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const contactItems = [
   { title: "Visit Us", body: ["239 East 14th Street", "New York, NY 10003"] },
-  { title: "Call Us", body: ["(212) 555-1234"] },
+  { title: "Call Us", body: ["(770) 744-2461"] },
   { title: "Email Us", body: ["info@eastvillagepharmacy.com"] },
   { title: "Hours of Operation", body: ["Mon - Fri: 9:00 AM - 7:00 PM", "Saturday: 10:00 AM - 4:00 PM", "Sunday: Closed"] },
 ];

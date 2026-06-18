@@ -143,7 +143,7 @@ export default function ConsultationPage() {
             <p className="mt-1 text-base text-emerald-50">Schedule a consultation today and take the next step toward better health.</p>
           </div>
           <div>
-            <p className="text-lg">(212) 555-1234</p>
+            <p className="text-lg">(770) 744-2461</p>
             <p className="mt-1 text-lg">info@eastvillagepharmacy.com</p>
           </div>
           <a href="/consultation" className="btn-silentech-secondary px-6 py-3 text-lg">
