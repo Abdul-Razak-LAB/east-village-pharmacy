@@ -53,7 +53,7 @@ export default function ConsultationPage() {
             </div>
 
             <div className="relative mb-6 min-h-[260px] overflow-hidden rounded-2xl border border-[var(--line)] lg:hidden">
-              <Image src="/assets/book-consultation.png" alt="Consultation visual" fill priority className="object-cover object-right-top" />
+              <Image src="/assets/book-consultation.png" alt="Consultation visual" fill priority className="h-full w-full object-contain object-center" />
             </div>
 
             <div className="hidden lg:block">
@@ -80,7 +80,7 @@ export default function ConsultationPage() {
           </div>
 
           <div className="relative hidden min-h-[320px] lg:block">
-            <Image src="/assets/book-consultation.png" alt="Consultation visual" fill priority className="object-cover object-right-top" />
+            <Image src="/assets/book-consultation.png" alt="Consultation visual" fill priority className="h-full w-full object-contain object-center" />
           </div>
         </section>
 

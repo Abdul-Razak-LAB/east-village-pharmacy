@@ -79,7 +79,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="relative min-h-[300px]">
-            <Image src="/assets/com.png" alt="Services visual" fill priority className="object-cover object-right-top" />
+            <Image src="/assets/com.png" alt="Services visual" fill priority className="h-full w-full object-contain object-center" />
           </div>
         </section>
 

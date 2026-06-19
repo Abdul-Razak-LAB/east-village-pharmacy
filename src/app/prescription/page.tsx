@@ -44,7 +44,7 @@ export default function PrescriptionPage() {
           </div>
 
           <div className="relative min-h-[300px]">
-            <Image src="/assets/refill.png" alt="Prescription visual" fill priority className="object-cover object-right-top" />
+            <Image src="/assets/refill.png" alt="Prescription visual" fill priority className="h-full w-full object-contain object-center" />
           </div>
         </section>
 

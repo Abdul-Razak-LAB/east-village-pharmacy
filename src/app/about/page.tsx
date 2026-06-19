@@ -44,13 +44,13 @@ export default function AboutPage() {
     <div className="brand-shell flex-1">
       <main className="mx-auto w-full max-w-[1520px] px-4 py-6 sm:px-6 lg:px-10">
         <section
-          className="rounded-3xl border border-[var(--line)] bg-contain bg-left bg-no-repeat p-8 sm:bg-cover sm:p-10"
+          className="rounded-3xl border border-[var(--line)] bg-cover bg-center bg-no-repeat p-8 sm:p-10"
           style={{
             backgroundImage: "url('/assets/about1.png')",
-            backgroundPosition: "left center",
+            backgroundPosition: "center",
           }}
         >
-          <div className="mr-auto w-[64%] sm:w-[62%] md:w-[60%] lg:w-[58%] xl:w-[62%]">
+          <div className="mr-auto w-full max-w-[420px] sm:max-w-[520px] md:max-w-[620px]">
             <p className="text-center text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)] sm:text-left">About East Village Pharmacy</p>
             <h1 className="mt-3 text-2xl leading-[1.06] text-[var(--brand-green-900)] sm:text-4xl sm:leading-[1.02] lg:text-6xl lg:leading-[0.96]">
               Rooted in Community.
@@ -129,7 +129,7 @@ export default function AboutPage() {
 
             <div className="mt-7 grid gap-3 sm:mx-auto sm:max-w-[640px] sm:grid-cols-3 lg:max-w-none">
               <a
-                href="tel:+17707442461"
+                href="tel:+14049341691"
                 className="inline-flex items-center justify-center gap-3 rounded-2xl border border-[#1f3750] bg-[#10253c] px-5 py-4 text-3xl font-bold text-white transition hover:brightness-105 sm:text-[2rem]"
               >
                 <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -150,7 +150,7 @@ export default function AboutPage() {
               </a>
 
               <a
-                href="https://wa.me/17707442461?text=Hi%20East%20Village%20Pharmacy%2C%20I%20have%20a%20question."
+                href="https://wa.me/14049341691?text=Hi%20East%20Village%20Pharmacy%2C%20I%20have%20a%20question."
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-3 rounded-2xl border border-[#0ea371] bg-[#0da06e] px-5 py-4 text-3xl font-bold text-[#041828] transition hover:brightness-105 sm:text-[2rem]"

@@ -43,7 +43,7 @@ export default function CompoundingPage() {
           </div>
 
           <div className="order-1 relative min-h-[300px] lg:order-2">
-            <Image src="/assets/compounding%20background%20image.png" alt="Compounding pharmacist" fill priority className="object-cover" />
+            <Image src="/assets/compounding%20background%20image.png" alt="Compounding pharmacist" fill priority className="h-full w-full object-contain object-center" />
           </div>
         </section>
 

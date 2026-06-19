@@ -194,7 +194,8 @@ export default function Home() {
                 width={1200}
                 height={900}
                 priority
-                className="h-[300px] w-full object-cover sm:h-[390px] lg:h-[620px]"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
+                className="h-[300px] w-full object-contain object-center sm:h-[390px] lg:h-[620px]"
               />
             </div>
 
@@ -279,7 +280,7 @@ export default function Home() {
                   alt="Pharmacist preparing medication"
                   fill
                   sizes="(max-width: 1024px) 100vw, 70vw"
-                  className="object-cover"
+                  className="h-full w-full object-contain object-center"
                 />
               </div>
             </article>
@@ -330,7 +331,8 @@ export default function Home() {
                 alt="Wellness products"
                 width={1200}
                 height={700}
-                className="h-60 w-full object-cover sm:h-72"
+                sizes="(max-width: 768px) 100vw, 1200px"
+                className="h-60 w-full object-contain object-center sm:h-72"
               />
             </div>
           </div>

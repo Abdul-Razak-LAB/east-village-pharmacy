@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const contactItems = [
-  { title: "Visit Us", body: ["239 East 14th Street", "New York, NY 10003"] },
+  { title: "Visit Us", body: ["2612 Holcom Bridge Road", "Suites 110", "Alpharetta, GA 30022"] },
   { title: "Call Us", body: ["(770) 744-2461"] },
   { title: "Email Us", body: ["info@eastvillagepharmacy.com"] },
   { title: "Hours of Operation", body: ["Mon - Fri: 9:00 AM - 7:00 PM", "Saturday: 10:00 AM - 4:00 PM", "Sunday: Closed"] },
@@ -39,7 +39,7 @@ export default function ContactPage() {
     <div className="brand-shell flex-1">
       <main className="mx-auto w-full max-w-[1520px] px-4 py-6 sm:px-6 lg:px-10">
         <section className="grid overflow-hidden rounded-3xl border border-[var(--line)] bg-white lg:grid-cols-[1fr_1.25fr]">
-          <div className="order-2 p-8 sm:p-10 lg:order-1">
+          <div className="order-2 hidden p-8 sm:p-10 lg:order-1 lg:block">
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)]">Contact Us</p>
             <h1 className="mt-3 max-w-xl text-4xl leading-[0.98] text-[var(--brand-green-900)] sm:text-6xl sm:leading-[0.95] lg:text-7xl">
               We are Here for You.
@@ -49,7 +49,7 @@ export default function ContactPage() {
           </div>
 
           <div className="order-1 relative min-h-[300px] lg:order-2">
-            <Image src="/assets/contact%20us2.png" alt="Contact visual" fill priority className="object-cover object-right-top" />
+            <Image src="/assets/contact-us-update.png" alt="Contact visual" fill priority className="h-full w-full object-contain object-center" />
           </div>
         </section>
 
@@ -108,13 +108,13 @@ export default function ContactPage() {
                 <div className="overflow-hidden rounded-xl border border-[var(--line)] bg-white">
                   <iframe
                     title="East Village Pharmacy map"
-                    src="https://www.google.com/maps?q=239+East+14th+Street,+New+York,+NY+10003&output=embed"
+                    src="https://www.google.com/maps?q=2612+Holcom+Bridge+Road,+Suites+110,+Alpharetta,+GA+30022&output=embed"
                     className="h-64 w-full"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
                 </div>
-                <a href="https://maps.google.com/?q=239+East+14th+Street,+New+York,+NY+10003" className="btn-silentech-secondary mt-4 px-4 py-2">
+                <a href="https://maps.google.com/?q=2612+Holcom+Bridge+Road,+Suites+110,+Alpharetta,+GA+30022" className="btn-silentech-secondary mt-4 px-4 py-2">
                   Get Directions
                 </a>
               </div>
@@ -123,7 +123,7 @@ export default function ContactPage() {
         </section>
 
         <section className="relative mt-4 overflow-hidden rounded-2xl border border-[#d8ded5]">
-          <Image src="/assets/welcome.png" alt="Pharmacy care background" fill className="object-cover" />
+          <Image src="/assets/welcome.png" alt="Pharmacy care background" fill className="h-full w-full object-contain object-center" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#f3f6f0]/92 via-[#f3f6f0]/85 to-[#eaf1e6]/90" />
 
           <div className="relative grid gap-3 p-4 md:grid-cols-2 xl:grid-cols-4">
