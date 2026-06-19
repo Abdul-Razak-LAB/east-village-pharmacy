@@ -25,14 +25,17 @@ export default function WellnessShopPage() {
       <main className="mx-auto w-full max-w-[1520px] px-4 py-6 sm:px-6 lg:px-10">
         <section className="grid overflow-hidden rounded-3xl border border-[var(--line)] bg-white lg:grid-cols-[1fr_1.25fr]">
           <div className="order-2 p-8 sm:p-10 lg:order-1">
-            <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)]">Wellness Shop</p>
-            <h1 className="mt-3 max-w-xl text-4xl leading-[0.98] text-[var(--brand-green-900)] sm:text-6xl sm:leading-[0.95] lg:text-7xl">
-              Premium Wellness.
-              <br />
-              Everyday Support.
+            <h1 className="mt-3 max-w-2xl text-4xl leading-tight text-[var(--brand-green-900)] sm:text-5xl lg:text-6xl">
+              Wellness Starts Before You Get Sick
             </h1>
-            <p className="mt-4 max-w-xl text-base text-slate-700 sm:text-xl">
-              Explore our curated selection of supplements, vitamins, and self-care essentials.
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
+              At East Village Pharmacy, we believe health is more than medicine.
+            </p>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-700">
+              It’s good sleep, smart nutrition, regular checks, and small daily choices. That’s why our wellness corner goes beyond prescriptions — free BP/BG checks, weight management tips, vitamins, supplements, and honest advice from pharmacists who actually listen.
+            </p>
+            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-700">
+              Don’t wait for symptoms. Build wellness with us, one day at a time.
             </p>
             <a
               href="/contact"

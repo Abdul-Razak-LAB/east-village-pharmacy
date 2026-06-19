@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 const contactItems = [
   { title: "Visit Us", body: ["2612 Holcom Bridge Road", "Suites 110", "Alpharetta, GA 30022"] },
@@ -35,17 +38,78 @@ const contactIcons: Record<string, React.ReactNode> = {
 };
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  const handleChange = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setFeedback(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.error || "We could not send your message right now.");
+      }
+
+      setFeedback({
+        type: "success",
+        message: "Thanks for reaching out. We’ll be in touch soon.",
+      });
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error) {
+      setFeedback({
+        type: "error",
+        message: error instanceof Error ? error.message : "Something went wrong.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="brand-shell flex-1">
       <main className="mx-auto w-full max-w-[1520px] px-4 py-6 sm:px-6 lg:px-10">
         <section className="grid overflow-hidden rounded-3xl border border-[var(--line)] bg-white lg:grid-cols-[1fr_1.25fr]">
           <div className="order-2 hidden p-8 sm:p-10 lg:order-1 lg:block">
-            <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)]">Contact Us</p>
-            <h1 className="mt-3 max-w-xl text-4xl leading-[0.98] text-[var(--brand-green-900)] sm:text-6xl sm:leading-[0.95] lg:text-7xl">
-              We are Here for You.
-              <br />
-              Lets Talk.
-            </h1>
+            <div className="max-w-2xl">
+              <h1 className="text-4xl leading-tight text-[var(--brand-green-900)] sm:text-5xl lg:text-6xl">
+                Get in Touch with East Village Pharmacy
+              </h1>
+              <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
+                Fast prescriptions. Clear answers. Trusted advice.
+              </p>
+              <p className="mt-3 text-base leading-7 text-slate-700">
+                Our team is ready to help with medication counseling, dosage questions, stock checks, or health screenings. Call, WhatsApp, or visit — we’ll respond quickly and professionally.
+              </p>
+              <p className="mt-3 text-base leading-7 text-slate-700">
+                Your health questions deserve real answers. Let’s talk.
+              </p>
+            </div>
           </div>
 
           <div className="order-1 relative min-h-[300px] lg:order-2">
@@ -56,15 +120,45 @@ export default function ContactPage() {
         <section className="mt-4 grid gap-4 lg:grid-cols-[1.25fr_1fr]">
           <article className="rounded-2xl border border-[var(--line)] bg-white p-5 sm:p-6">
             <h2 className="text-3xl text-[var(--brand-green-900)] sm:text-4xl">Send Us a Message</h2>
-            <form className="mt-4 grid gap-3 sm:grid-cols-2">
-              <input className="rounded-xl border border-[var(--line)] px-4 py-2.5" placeholder="Full Name *" required />
-              <input className="rounded-xl border border-[var(--line)] px-4 py-2.5" placeholder="Email Address *" type="email" required />
-              <input className="rounded-xl border border-[var(--line)] px-4 py-2.5 sm:col-span-2" placeholder="Phone Number" />
-              <textarea className="rounded-xl border border-[var(--line)] px-4 py-2.5 sm:col-span-2" placeholder="Your Message" rows={4} required />
-              <button className="btn-silentech-primary px-4 py-2.5 sm:col-span-2">
-                Send Message
+            <form className="mt-4 grid gap-3 sm:grid-cols-2" onSubmit={handleSubmit}>
+              <input
+                className="rounded-xl border border-[var(--line)] px-4 py-2.5"
+                placeholder="Full Name *"
+                required
+                value={formData.fullName}
+                onChange={(event) => handleChange("fullName", event.target.value)}
+              />
+              <input
+                className="rounded-xl border border-[var(--line)] px-4 py-2.5"
+                placeholder="Email Address *"
+                type="email"
+                required
+                value={formData.email}
+                onChange={(event) => handleChange("email", event.target.value)}
+              />
+              <input
+                className="rounded-xl border border-[var(--line)] px-4 py-2.5 sm:col-span-2"
+                placeholder="Phone Number"
+                value={formData.phone}
+                onChange={(event) => handleChange("phone", event.target.value)}
+              />
+              <textarea
+                className="rounded-xl border border-[var(--line)] px-4 py-2.5 sm:col-span-2"
+                placeholder="Your Message"
+                rows={4}
+                required
+                value={formData.message}
+                onChange={(event) => handleChange("message", event.target.value)}
+              />
+              <button className="btn-silentech-primary px-4 py-2.5 sm:col-span-2" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
             </form>
+            {feedback ? (
+              <p className={`mt-3 text-sm ${feedback.type === "success" ? "text-emerald-700" : "text-red-600"}`}>
+                {feedback.message}
+              </p>
+            ) : null}
             <p className="mt-3 text-sm text-slate-600">Your information is safe and secure. We respect your privacy.</p>
           </article>
 

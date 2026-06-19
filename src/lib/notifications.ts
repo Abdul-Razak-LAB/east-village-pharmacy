@@ -11,6 +11,13 @@ type EmailPayload = {
   message: string;
 };
 
+type ContactMessagePayload = {
+  fullName: string;
+  email: string;
+  phone?: string;
+  message: string;
+};
+
 type SmsCarrier = "att" | "tmobile" | "verizon";
 
 const SMS_GATEWAYS: Record<SmsCarrier, string> = {
@@ -55,6 +62,29 @@ export async function sendConsultationEmail(payload: EmailPayload) {
       <p><strong>Phone:</strong> ${payload.phone}</p>
       <p><strong>Preferred Contact:</strong> ${payload.preferredContact}</p>
       <p><strong>Consultation Type:</strong> ${payload.consultationType}</p>
+      <p><strong>Message:</strong> ${payload.message}</p>
+    `,
+  });
+}
+
+export async function sendContactEmail(payload: ContactMessagePayload) {
+  const resend = getResendClient();
+  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <onboarding@resend.dev>";
+  const to = process.env.CLINIC_EMAIL_TO;
+
+  if (!to) {
+    throw new Error("CLINIC_EMAIL_TO is required for contact email alerts.");
+  }
+
+  return resend.emails.send({
+    from,
+    to,
+    subject: `New contact message from ${payload.fullName}`,
+    html: `
+      <h2>New Contact Message</h2>
+      <p><strong>Name:</strong> ${payload.fullName}</p>
+      <p><strong>Email:</strong> ${payload.email}</p>
+      <p><strong>Phone:</strong> ${payload.phone || "Not provided"}</p>
       <p><strong>Message:</strong> ${payload.message}</p>
     `,
   });

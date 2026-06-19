@@ -50,16 +50,21 @@ export default function AboutPage() {
             backgroundPosition: "center",
           }}
         >
-          <div className="mr-auto w-full max-w-[420px] sm:max-w-[520px] md:max-w-[620px]">
-            <p className="text-center text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)] sm:text-left">About East Village Pharmacy</p>
-            <h1 className="mt-3 text-2xl leading-[1.06] text-[var(--brand-green-900)] sm:text-4xl sm:leading-[1.02] lg:text-6xl lg:leading-[0.96]">
-              Rooted in Community.
-              <br />
-              Focused on Better Outcomes.
+          <div className="mr-auto w-full max-w-[520px] sm:max-w-[620px] md:max-w-[720px]">
+            <h1 className="text-3xl leading-tight text-[var(--brand-green-900)] sm:text-4xl lg:text-6xl">
+              About Us
             </h1>
-            <p className="mt-5 text-base text-slate-700 sm:text-xl">
-              East Village Pharmacy combines modern pharmacy services with one-on-one support. We specialize in compounding,
-              medication guidance, and practical care plans that fit real life.
+            <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
+              Your health is our address.
+            </p>
+            <p className="mt-3 text-base leading-7 text-slate-700">
+              At East Village Pharmacy, we’re more than a dispensary — we’re your neighbors. From your first prescription to your daily wellness needs, our team of licensed pharmacists is here to listen, advise, and care. Fast service, genuine advice, no rush.
+            </p>
+            <p className="mt-3 text-base leading-7 text-slate-700">
+              Because in East Village, we don’t just fill prescriptions. We fill peace of mind.
+            </p>
+            <p className="mt-3 text-base leading-7 text-slate-700">
+              Step in. We’re ready when you are.
             </p>
           </div>
         </section>
