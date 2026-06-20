@@ -1,4 +1,4 @@
-const CACHE_NAME = "east-village-pwa-v1";
+const CACHE_NAME = "east-village-pwa-v2";
 const APP_SHELL = [
   "/",
   "/manifest.webmanifest",
@@ -39,6 +39,15 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  // Always use the network for documents and Next.js internals to avoid stale chunk reload loops.
+  if (
+    event.request.mode === "navigate" ||
+    requestUrl.pathname.startsWith("/_next/") ||
+    requestUrl.pathname.startsWith("/api/")
+  ) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
@@ -55,6 +64,11 @@ self.addEventListener("fetch", (event) => {
             return networkResponse;
           }
 
+          const contentType = networkResponse.headers.get("content-type") || "";
+          if (contentType.includes("text/html")) {
+            return networkResponse;
+          }
+
           const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseToCache);
@@ -62,7 +76,7 @@ self.addEventListener("fetch", (event) => {
 
           return networkResponse;
         })
-        .catch(() => caches.match("/"));
+        .catch(() => cachedResponse || caches.match("/"));
     })
   );
 });

@@ -42,12 +42,8 @@ function normalizePhone(phone: string) {
 
 export async function sendConsultationEmail(payload: EmailPayload) {
   const resend = getResendClient();
-  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <onboarding@resend.dev>";
-  const to = process.env.CLINIC_EMAIL_TO;
-
-  if (!to) {
-    throw new Error("CLINIC_EMAIL_TO is required for consultation email alerts.");
-  }
+  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Saudat.Mawia@GreenLeafGA.onmicrosoft.com>";
+  const to = process.env.CLINIC_EMAIL_TO ?? "Saudat.Mawia@GreenLeafGA.onmicrosoft.com";
 
   return resend.emails.send({
     from,
@@ -69,12 +65,8 @@ export async function sendConsultationEmail(payload: EmailPayload) {
 
 export async function sendContactEmail(payload: ContactMessagePayload) {
   const resend = getResendClient();
-  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <onboarding@resend.dev>";
-  const to = process.env.CLINIC_EMAIL_TO;
-
-  if (!to) {
-    throw new Error("CLINIC_EMAIL_TO is required for contact email alerts.");
-  }
+  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Saudat.Mawia@GreenLeafGA.onmicrosoft.com>";
+  const to = process.env.CLINIC_EMAIL_TO ?? "Saudat.Mawia@GreenLeafGA.onmicrosoft.com";
 
   return resend.emails.send({
     from,
@@ -111,7 +103,7 @@ export async function sendConsultationSms(params: {
 
   const gateway = SMS_GATEWAYS[params.carrier];
   const to = `${digits}@${gateway}`;
-  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <onboarding@resend.dev>";
+  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Saudat.Mawia@GreenLeafGA.onmicrosoft.com>";
 
   return resend.emails.send({
     from,

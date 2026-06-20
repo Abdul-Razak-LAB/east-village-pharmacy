@@ -6,7 +6,7 @@ import { useState } from "react";
 const contactItems = [
   { title: "Visit Us", body: ["2612 Holcom Bridge Road", "Suites 110", "Alpharetta, GA 30022"] },
   { title: "Call Us", body: ["(770) 744-2461"] },
-  { title: "Email Us", body: ["info@eastvillagepharmacy.com"] },
+  { title: "Email Us", body: ["Saudat.Mawia@GreenLeafGA.onmicrosoft.com"] },
   { title: "Hours of Operation", body: ["Mon - Fri: 9:00 AM - 7:00 PM", "Saturday: 10:00 AM - 4:00 PM", "Sunday: Closed"] },
 ];
 
@@ -45,7 +45,7 @@ export default function ContactPage() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [feedback, setFeedback] = useState<{ type: "success" | "warning" | "error"; message: string } | null>(null);
 
   const handleChange = (field: keyof typeof formData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -72,8 +72,8 @@ export default function ContactPage() {
       }
 
       setFeedback({
-        type: "success",
-        message: "Thanks for reaching out. We’ll be in touch soon.",
+        type: data.warning ? "warning" : "success",
+        message: data.warning ?? "Thanks for reaching out. We’ll be in touch soon.",
       });
       setFormData({
         fullName: "",
@@ -95,7 +95,7 @@ export default function ContactPage() {
     <div className="brand-shell flex-1">
       <main className="mx-auto w-full max-w-[1520px] px-4 py-6 sm:px-6 lg:px-10">
         <section className="grid overflow-hidden rounded-3xl border border-[var(--line)] bg-white lg:grid-cols-[1fr_1.25fr]">
-          <div className="order-2 hidden p-8 sm:p-10 lg:order-1 lg:block">
+          <div className="order-2 p-6 sm:p-8 lg:order-1 lg:p-10">
             <div className="max-w-2xl">
               <h1 className="text-4xl leading-tight text-[var(--brand-green-900)] sm:text-5xl lg:text-6xl">
                 Get in Touch with East Village Pharmacy
@@ -112,12 +112,12 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="order-1 relative min-h-[300px] lg:order-2">
+          <div className="order-1 relative min-h-[220px] sm:min-h-[300px] lg:order-2">
             <Image src="/assets/contact-us-update.png" alt="Contact visual" fill priority className="h-full w-full object-contain object-center" />
           </div>
         </section>
 
-        <section className="mt-4 grid gap-4 lg:grid-cols-[1.25fr_1fr]">
+        <section className="mt-4 grid gap-4 lg:grid-cols-[0.9fr_1.1fr] xl:grid-cols-[0.85fr_1.15fr]">
           <article className="rounded-2xl border border-[var(--line)] bg-white p-5 sm:p-6">
             <h2 className="text-3xl text-[var(--brand-green-900)] sm:text-4xl">Send Us a Message</h2>
             <form className="mt-4 grid gap-3 sm:grid-cols-2" onSubmit={handleSubmit}>
@@ -155,16 +155,24 @@ export default function ContactPage() {
               </button>
             </form>
             {feedback ? (
-              <p className={`mt-3 text-sm ${feedback.type === "success" ? "text-emerald-700" : "text-red-600"}`}>
+              <p
+                className={`mt-3 text-sm ${
+                  feedback.type === "success"
+                    ? "text-emerald-700"
+                    : feedback.type === "warning"
+                      ? "text-amber-700"
+                      : "text-red-600"
+                }`}
+              >
                 {feedback.message}
               </p>
             ) : null}
             <p className="mt-3 text-sm text-slate-600">Your information is safe and secure. We respect your privacy.</p>
           </article>
 
-          <article className="grid gap-4 rounded-2xl border border-[var(--line)] bg-white p-5 sm:p-6">
-            <div className="grid gap-4 lg:grid-cols-[1fr_1.1fr]">
-              <div className="rounded-2xl border border-[var(--line)] bg-[#f7f9f6] p-5 sm:p-6">
+          <article className="grid gap-4 rounded-2xl border border-[var(--line)] bg-white p-5 sm:p-6 lg:p-7">
+            <div className="grid items-stretch gap-4 md:grid-cols-2">
+              <div className="h-full rounded-2xl border border-[var(--line)] bg-[#f7f9f6] p-5 sm:p-6 lg:min-h-[600px]">
                 <h2 className="text-3xl text-[var(--brand-green-900)] sm:text-4xl">Contact Information</h2>
                 <div className="mt-4 space-y-4">
                   {contactItems.map((item) => (
@@ -174,10 +182,17 @@ export default function ContactPage() {
                           <span className="mt-1 grid h-9 w-9 place-items-center rounded-full bg-[#e5eee5] text-[var(--brand-green-900)]">
                             {contactIcons[item.title]}
                           </span>
-                          <div>
+                          <div className="min-w-0 flex-1">
                             <h3 className="text-base font-semibold text-[var(--brand-green-900)]">{item.title}</h3>
                             {item.body.map((line) => (
-                              <p key={line} className="text-sm text-slate-700">
+                              <p
+                                key={line}
+                                className={`text-slate-700 ${
+                                  item.title === "Email Us"
+                                    ? "break-words text-[13px] leading-snug sm:text-sm"
+                                    : "break-words text-sm"
+                                }`}
+                              >
                                 {line}
                               </p>
                             ))}
@@ -187,7 +202,7 @@ export default function ContactPage() {
                         <>
                           <h3 className="text-xl font-bold text-[var(--brand-green-900)]">{item.title}</h3>
                           {item.body.map((line) => (
-                            <p key={line} className="text-base text-slate-700">
+                            <p key={line} className="break-words text-base text-slate-700">
                               {line}
                             </p>
                           ))}
@@ -198,12 +213,12 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-[var(--line)] bg-[#e6ece4] p-5 sm:p-6">
-                <div className="overflow-hidden rounded-xl border border-[var(--line)] bg-white">
+              <div className="flex h-full min-h-[360px] flex-col rounded-2xl border border-[var(--line)] bg-[#e6ece4] p-5 sm:min-h-[400px] sm:p-6 lg:min-h-[600px]">
+                <div className="flex-1 overflow-hidden rounded-xl border border-[var(--line)] bg-white">
                   <iframe
                     title="East Village Pharmacy map"
                     src="https://www.google.com/maps?q=2612+Holcom+Bridge+Road,+Suites+110,+Alpharetta,+GA+30022&output=embed"
-                    className="h-64 w-full"
+                    className="h-full min-h-[300px] w-full sm:min-h-[340px] lg:min-h-[460px]"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />

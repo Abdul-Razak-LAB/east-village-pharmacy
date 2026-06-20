@@ -28,12 +28,24 @@ export async function POST(request: Request) {
 
     const { fullName, email, phone, message } = parsed.data;
 
-    await sendContactEmail({
-      fullName,
-      email,
-      phone,
-      message,
-    });
+    const emailResult = await Promise.allSettled([
+      sendContactEmail({
+        fullName,
+        email,
+        phone,
+        message,
+      }),
+    ]);
+
+    if (emailResult[0].status === "rejected") {
+      console.error("Contact email delivery failed", emailResult[0].reason);
+
+      return NextResponse.json({
+        ok: true,
+        warning:
+          "Your form was submitted, but email delivery is temporarily unavailable. Please call us at (770) 744-2461 if your request is urgent.",
+      });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (error) {

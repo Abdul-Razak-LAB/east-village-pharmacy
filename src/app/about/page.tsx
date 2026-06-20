@@ -144,7 +144,7 @@ export default function AboutPage() {
               </a>
 
               <a
-                href="mailto:info@eastvillagepharmacy.com"
+                href="mailto:Saudat.Mawia@GreenLeafGA.onmicrosoft.com"
                 className="inline-flex items-center justify-center gap-3 rounded-2xl border border-[#1f3750] bg-[#10253c] px-5 py-4 text-3xl font-bold text-white transition hover:brightness-105 sm:text-[2rem]"
               >
                 <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

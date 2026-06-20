@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import PWARegister from "../components/pwa-register";
@@ -15,11 +15,11 @@ const primaryNav = [
 ];
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://eastvillagerx.com"),
   title: "East Village Pharmacy",
   description:
     "Trusted care, advanced compounding, and digital consultation requests for East Village Pharmacy.",
   manifest: "/manifest.webmanifest",
-  themeColor: "#073d2b",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -29,6 +29,10 @@ export const metadata: Metadata = {
     icon: "/assets/new%20logo.png",
     apple: "/assets/new%20logo.png",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#073d2b",
 };
 
 export default function RootLayout({
