@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 const workflow = [
   {
@@ -27,6 +30,49 @@ const trustItems = [
 ];
 
 export default function PrescriptionPage() {
+  const [formData, setFormData] = useState({ fullName: "", email: "", phone: "", notes: "" });
+  const [fileName, setFileName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [feedback, setFeedback] = useState<{ type: "success" | "warning" | "error"; message: string } | null>(null);
+
+  const handleChange = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setFeedback(null);
+
+    try {
+      const response = await fetch("/api/prescription", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, fileName }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.error || "We could not submit your prescription right now.");
+      }
+
+      setFeedback({
+        type: data.warning ? "warning" : "success",
+        message: data.warning ?? "Your prescription has been submitted. Our team will be in touch shortly.",
+      });
+      setFormData({ fullName: "", email: "", phone: "", notes: "" });
+      setFileName("");
+    } catch (error) {
+      setFeedback({
+        type: "error",
+        message: error instanceof Error ? error.message : "Something went wrong.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="brand-shell flex-1">
       <main className="mx-auto w-full max-w-[1520px] px-4 py-6 sm:px-6 lg:px-10">
@@ -51,20 +97,55 @@ export default function PrescriptionPage() {
         <section className="mt-4 grid gap-4 lg:grid-cols-[1.6fr_1fr]">
           <article className="rounded-2xl border border-[var(--line)] bg-white p-5 sm:p-6">
             <h2 className="text-3xl text-[var(--brand-green-900)] sm:text-4xl">Upload Your Prescription</h2>
-            <form className="mt-4 grid gap-3 sm:grid-cols-2">
-              <input className="rounded-xl border border-[var(--line)] px-4 py-2.5" placeholder="Full Name *" required />
-              <input className="rounded-xl border border-[var(--line)] px-4 py-2.5" placeholder="Email Address *" type="email" required />
-              <input className="rounded-xl border border-[var(--line)] px-4 py-2.5 sm:col-span-2" placeholder="Phone Number *" required />
+            <form className="mt-4 grid gap-3 sm:grid-cols-2" onSubmit={handleSubmit}>
+              <input
+                className="rounded-xl border border-[var(--line)] px-4 py-2.5"
+                placeholder="Full Name *"
+                required
+                value={formData.fullName}
+                onChange={(e) => handleChange("fullName", e.target.value)}
+              />
+              <input
+                className="rounded-xl border border-[var(--line)] px-4 py-2.5"
+                placeholder="Email Address *"
+                type="email"
+                required
+                value={formData.email}
+                onChange={(e) => handleChange("email", e.target.value)}
+              />
+              <input
+                className="rounded-xl border border-[var(--line)] px-4 py-2.5 sm:col-span-2"
+                placeholder="Phone Number *"
+                required
+                value={formData.phone}
+                onChange={(e) => handleChange("phone", e.target.value)}
+              />
               <label className="grid rounded-xl border border-dashed border-[var(--line)] bg-[#f9fbf8] p-6 text-center text-sm text-slate-600 sm:col-span-2">
                 <span className="text-base font-semibold text-[var(--brand-green-900)]">Upload Prescription (PDF, JPG, PNG)</span>
-                <span className="mt-1">Drag and drop your file here or click to browse.</span>
-                <input type="file" className="mt-2" />
+                <span className="mt-1">{fileName || "Drag and drop your file here or click to browse."}</span>
+                <input
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  className="mt-2"
+                  onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
+                />
               </label>
-              <textarea className="rounded-xl border border-[var(--line)] px-4 py-2.5 sm:col-span-2" placeholder="Additional Notes (Optional)" rows={3} />
-              <button className="btn-silentech-primary px-4 py-2.5 sm:col-span-2">
-                Submit Prescription
+              <textarea
+                className="rounded-xl border border-[var(--line)] px-4 py-2.5 sm:col-span-2"
+                placeholder="Additional Notes (Optional)"
+                rows={3}
+                value={formData.notes}
+                onChange={(e) => handleChange("notes", e.target.value)}
+              />
+              <button className="btn-silentech-primary px-4 py-2.5 sm:col-span-2" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Submit Prescription"}
               </button>
             </form>
+            {feedback ? (
+              <p className={`mt-3 text-sm ${feedback.type === "success" ? "text-emerald-700" : feedback.type === "warning" ? "text-amber-700" : "text-red-600"}`}>
+                {feedback.message}
+              </p>
+            ) : null}
             <p className="mt-3 text-sm text-slate-600">Your information is secure and confidential.</p>
           </article>
 

@@ -45,7 +45,7 @@ export default function ConsultationPage() {
           <div className="p-8 sm:p-10">
             <div className="lg:hidden">
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)]">Request A Consultation</p>
-              <h1 className="mt-3 max-w-xl text-4xl leading-[0.98] text-[var(--brand-green-900)] sm:text-6xl sm:leading-[0.95]">
+              <h1 className="mt-3 max-w-xl text-xl font-bold leading-tight text-[var(--brand-green-900)] sm:text-2xl">
                 Personalized Guidance.
                 <br />
                 Better Health Outcomes.
@@ -58,7 +58,7 @@ export default function ConsultationPage() {
 
             <div className="hidden lg:block">
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)]">Request A Consultation</p>
-              <h1 className="mt-3 max-w-xl text-4xl leading-[0.98] text-[var(--brand-green-900)] sm:text-6xl sm:leading-[0.95] lg:text-7xl">
+              <h1 className="mt-3 max-w-xl text-xl font-bold leading-tight text-[var(--brand-green-900)] sm:text-2xl">
                 Personalized Guidance.
                 <br />
                 Better Health Outcomes.

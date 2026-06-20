@@ -221,13 +221,13 @@ export default function Home() {
                 REFILL PRESCRIPTION
               </a>
               <a
-                href="/consultation"
+                href="/compounding"
                 className="btn-silentech-secondary px-4 py-2.5 text-xs tracking-[0.08em] sm:text-sm"
               >
                 REQUEST A COMPOUND
               </a>
               <a
-                href="/contact"
+                href="/prescription"
                 className="btn-silentech-secondary px-4 py-2.5 text-xs tracking-[0.08em] sm:text-sm"
               >
                 TRANSFER RX
@@ -302,7 +302,7 @@ export default function Home() {
               </div>
 
               <a
-                href="/services"
+                href="/compounding"
                 className="btn-silentech-secondary mt-6 px-5 py-2.5 text-sm tracking-wide"
               >
                 LEARN MORE ABOUT COMPOUNDING
@@ -314,12 +314,14 @@ export default function Home() {
         <section className="mt-6 overflow-hidden rounded-2xl border border-[#d8dfd1] bg-[#f6f7f2]">
           <div className="grid items-center gap-4 p-6 sm:p-8 lg:grid-cols-[0.92fr_1.08fr]">
             <div className="order-2 lg:order-1">
-              <h2 className="text-5xl leading-[0.9] text-[var(--brand-green-900)] sm:text-6xl">Your Wellness Starts Here</h2>
-              <p className="mt-3 max-w-md text-slate-700">
-                Explore our curated selection of premium supplements, vitamins, and skincare products to support your health journey.
+              <h3 className="text-xl font-bold leading-tight text-[var(--brand-green-900)] sm:text-2xl">Wellness Starts Before You Get Sick</h3>
+              <p className="mt-3 max-w-2xl text-slate-700">
+                At East Village Pharmacy, we believe health is more than medicine. It's good sleep, smart nutrition, regular checks, and small daily choices.
+                That's why our wellness corner goes beyond prescriptions - free BP/BG checks, weight management tips, vitamins, supplements, and honest advice from pharmacists who actually listen.
+                Don't wait for symptoms. Build wellness with us, one day at a time.
               </p>
               <a
-                href="/services"
+                href="/wellness-shop"
                 className="btn-silentech-primary mt-5 px-5 py-2.5 text-sm tracking-wide"
               >
                 SHOP WELLNESS

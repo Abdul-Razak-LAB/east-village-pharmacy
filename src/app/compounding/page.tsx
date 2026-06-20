@@ -26,11 +26,11 @@ export default function CompoundingPage() {
         <section className="grid overflow-hidden rounded-3xl border border-[var(--line)] bg-white lg:grid-cols-[1fr_1.25fr]">
           <div className="order-2 p-8 sm:p-10 lg:order-1">
             <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)]">Compounding</p>
-            <h1 className="mt-3 max-w-xl text-4xl leading-[0.98] text-[var(--brand-green-900)] sm:text-6xl sm:leading-[0.95] lg:text-7xl">
+            <h3 className="mt-3 max-w-xl text-xl font-bold leading-tight text-[var(--brand-green-900)] sm:text-2xl">
               Tailored Medications.
               <br />
               Personalized Precision.
-            </h1>
+            </h3>
             <p className="mt-4 max-w-xl text-base text-slate-700 sm:text-xl">
               Our compounding team creates customized medications when standard options are not the right fit.
             </p>

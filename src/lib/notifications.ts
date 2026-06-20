@@ -82,6 +82,29 @@ export async function sendContactEmail(payload: ContactMessagePayload) {
   });
 }
 
+export async function sendPrescriptionSmsAlert(params: {
+  fullName: string;
+  phone: string;
+  notes?: string;
+  fileName?: string;
+}) {
+  const resend = getResendClient();
+
+  // Carrier for the pharmacy alert number — set PHARMACY_CARRIER env var if not AT&T.
+  const carrier = (process.env.PHARMACY_CARRIER ?? "att") as SmsCarrier;
+  const pharmacyDigits = "4049341691";
+  const gateway = SMS_GATEWAYS[carrier];
+  const to = `${pharmacyDigits}@${gateway}`;
+  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Saudat.Mawia@GreenLeafGA.onmicrosoft.com>";
+
+  return resend.emails.send({
+    from,
+    to,
+    subject: "New Prescription Submission",
+    text: `New prescription from ${params.fullName} (${params.phone}).${params.fileName ? ` File: ${params.fileName}.` : ""}${params.notes ? ` Notes: ${params.notes}` : ""} Please review and follow up.`,
+  });
+}
+
 export async function sendConsultationSms(params: {
   requestId: number;
   fullName: string;

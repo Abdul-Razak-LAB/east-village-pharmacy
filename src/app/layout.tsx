@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import MobileNav from "../components/mobile-nav";
 import PWARegister from "../components/pwa-register";
 import "./globals.css";
 
@@ -79,32 +80,7 @@ export default function RootLayout({
               </nav>
 
               <div className="flex items-center gap-2">
-                <details className="relative lg:hidden">
-                  <summary
-                    aria-label="Open navigation menu"
-                    className="grid h-10 w-10 cursor-pointer list-none place-items-center rounded-md border border-[var(--line)] bg-white text-[var(--brand-green-900)] transition hover:bg-emerald-50 [&::-webkit-details-marker]:hidden"
-                  >
-                    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                      <path d="M4 7h16" />
-                      <path d="M4 12h16" />
-                      <path d="M4 17h16" />
-                    </svg>
-                  </summary>
-
-                  <div className="absolute right-0 top-12 z-50 w-64 overflow-hidden rounded-xl border border-[var(--line)] bg-white shadow-[0_14px_28px_-16px_rgba(4,24,40,0.4)]">
-                    <nav className="grid">
-                      {primaryNav.map((item) => (
-                        <Link
-                          key={`${item.label}-mobile-menu`}
-                          href={item.href}
-                          className="border-b border-[var(--line)] px-4 py-3 text-sm font-semibold text-slate-800 transition duration-200 hover:bg-[var(--surface-muted)] hover:text-[var(--brand-green-700)] last:border-b-0"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </nav>
-                  </div>
-                </details>
+                <MobileNav items={primaryNav} />
 
                 <Link href="/prescription" className="btn-silentech-primary px-3 py-2 text-xs tracking-[0.06em] sm:px-4 sm:text-sm lg:px-5 lg:py-2.5">
                   REFILL RX
