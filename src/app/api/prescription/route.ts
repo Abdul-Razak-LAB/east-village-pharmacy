@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { savePrescriptionRequest } from "@/lib/db";
 import { sendPrescriptionSmsAlert } from "@/lib/notifications";
 
 const prescriptionSchema = z.object({
@@ -24,6 +25,14 @@ export async function POST(request: Request) {
     }
 
     const { fullName, phone, notes, fileName } = parsed.data;
+
+    await savePrescriptionRequest({
+      fullName: parsed.data.fullName,
+      email: parsed.data.email,
+      phone: parsed.data.phone,
+      notes: parsed.data.notes,
+      fileName: parsed.data.fileName,
+    });
 
     const smsResult = await Promise.allSettled([
       sendPrescriptionSmsAlert({ fullName, phone, notes, fileName }),

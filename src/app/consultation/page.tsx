@@ -144,7 +144,7 @@ export default function ConsultationPage() {
           </div>
           <div>
             <p className="text-lg">(770) 744-2461</p>
-            <p className="mt-1 text-lg">Saudat.Mawia@GreenLeafGA.onmicrosoft.com</p>
+            <p className="mt-1 text-lg">Info@GreenLeaf GA.onmicrosoft.com</p>
           </div>
           <a href="/consultation" className="btn-silentech-secondary px-6 py-3 text-lg">
             Request a Consultation

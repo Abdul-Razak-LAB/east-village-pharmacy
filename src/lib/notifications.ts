@@ -42,8 +42,8 @@ function normalizePhone(phone: string) {
 
 export async function sendConsultationEmail(payload: EmailPayload) {
   const resend = getResendClient();
-  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Saudat.Mawia@GreenLeafGA.onmicrosoft.com>";
-  const to = process.env.CLINIC_EMAIL_TO ?? "Saudat.Mawia@GreenLeafGA.onmicrosoft.com";
+  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Info@GreenLeaf GA.onmicrosoft.com>";
+  const to = process.env.CLINIC_EMAIL_TO ?? "Info@GreenLeaf GA.onmicrosoft.com";
 
   return resend.emails.send({
     from,
@@ -65,8 +65,8 @@ export async function sendConsultationEmail(payload: EmailPayload) {
 
 export async function sendContactEmail(payload: ContactMessagePayload) {
   const resend = getResendClient();
-  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Saudat.Mawia@GreenLeafGA.onmicrosoft.com>";
-  const to = process.env.CLINIC_EMAIL_TO ?? "Saudat.Mawia@GreenLeafGA.onmicrosoft.com";
+  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Info@GreenLeaf GA.onmicrosoft.com>";
+  const to = process.env.CLINIC_EMAIL_TO ?? "Info@GreenLeaf GA.onmicrosoft.com";
 
   return resend.emails.send({
     from,
@@ -95,7 +95,7 @@ export async function sendPrescriptionSmsAlert(params: {
   const pharmacyDigits = "4049341691";
   const gateway = SMS_GATEWAYS[carrier];
   const to = `${pharmacyDigits}@${gateway}`;
-  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Saudat.Mawia@GreenLeafGA.onmicrosoft.com>";
+  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Info@GreenLeaf GA.onmicrosoft.com>";
 
   return resend.emails.send({
     from,
@@ -126,7 +126,7 @@ export async function sendConsultationSms(params: {
 
   const gateway = SMS_GATEWAYS[params.carrier];
   const to = `${digits}@${gateway}`;
-  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Saudat.Mawia@GreenLeafGA.onmicrosoft.com>";
+  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Info@GreenLeaf GA.onmicrosoft.com>";
 
   return resend.emails.send({
     from,

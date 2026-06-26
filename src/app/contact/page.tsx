@@ -6,7 +6,7 @@ import { useState } from "react";
 const contactItems = [
   { title: "Visit Us", body: ["2612 Holcom Bridge Road", "Suites 110", "Alpharetta, GA 30022"] },
   { title: "Call Us", body: ["(770) 744-2461"] },
-  { title: "Email Us", body: ["Saudat.Mawia@GreenLeafGA.onmicrosoft.com"] },
+  { title: "Email Us", body: ["Info@GreenLeaf GA.onmicrosoft.com"] },
   { title: "Hours of Operation", body: ["Mon - Fri: 9:00 AM - 7:00 PM", "Saturday: 10:00 AM - 4:00 PM", "Sunday: Closed"] },
 ];
 
@@ -113,7 +113,7 @@ export default function ContactPage() {
           </div>
 
           <div className="order-1 relative min-h-[220px] sm:min-h-[300px] lg:order-2">
-            <Image src="/assets/contact-us-update.png" alt="Contact visual" fill priority className="h-full w-full object-contain object-center" />
+            <Image src="/assets/contactUs.png" alt="Contact visual" fill priority className="h-full w-full object-contain object-center" />
           </div>
         </section>
 
@@ -125,6 +125,7 @@ export default function ContactPage() {
                 className="rounded-xl border border-[var(--line)] px-4 py-2.5"
                 placeholder="Full Name *"
                 required
+                minLength={2}
                 value={formData.fullName}
                 onChange={(event) => handleChange("fullName", event.target.value)}
               />
@@ -147,6 +148,7 @@ export default function ContactPage() {
                 placeholder="Your Message"
                 rows={4}
                 required
+                minLength={10}
                 value={formData.message}
                 onChange={(event) => handleChange("message", event.target.value)}
               />

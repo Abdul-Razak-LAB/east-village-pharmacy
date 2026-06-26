@@ -316,9 +316,9 @@ export default function Home() {
             <div className="order-2 lg:order-1">
               <h3 className="text-xl font-bold leading-tight text-[var(--brand-green-900)] sm:text-2xl">Wellness Starts Before You Get Sick</h3>
               <p className="mt-3 max-w-2xl text-slate-700">
-                At East Village Pharmacy, we believe health is more than medicine. It's good sleep, smart nutrition, regular checks, and small daily choices.
-                That's why our wellness corner goes beyond prescriptions - free BP/BG checks, weight management tips, vitamins, supplements, and honest advice from pharmacists who actually listen.
-                Don't wait for symptoms. Build wellness with us, one day at a time.
+                At East Village Pharmacy, we believe health is more than medicine. It&apos;s good sleep, smart nutrition, regular checks, and small daily choices.
+                That&apos;s why our wellness corner goes beyond prescriptions - free BP/BG checks, weight management tips, vitamins, supplements, and honest advice from pharmacists who actually listen.
+                Don&apos;t wait for symptoms. Build wellness with us, one day at a time.
               </p>
               <a
                 href="/wellness-shop"
