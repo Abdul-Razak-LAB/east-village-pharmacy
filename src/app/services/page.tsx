@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const serviceCards = [
   {
@@ -86,6 +87,28 @@ export default function ServicesPage() {
         <section className="mt-5">
           <p className="text-center text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)]">Our Compounding Services</p>
           <h2 className="mt-2 text-center text-3xl text-[var(--brand-green-900)] sm:text-5xl">Care Thats Custom. Solutions That Work.</h2>
+
+          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+            <Link
+              href="/compounding"
+              className="group rounded-2xl border border-[var(--line)] bg-white p-6 shadow-[0_15px_30px_-24px_rgba(10,50,36,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-24px_rgba(10,50,36,0.5)]"
+            >
+              <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)]">Featured Page</p>
+              <h3 className="mt-2 text-3xl text-[var(--brand-green-900)] sm:text-4xl">Compounding</h3>
+              <p className="mt-3 text-base text-slate-700">Learn more about our specialized compounding process and personalized medication options.</p>
+              <span className="mt-4 inline-block text-base font-bold text-[var(--brand-green-700)]">Go to Compounding -&gt;</span>
+            </Link>
+
+            <Link
+              href="/wellness-shop"
+              className="group rounded-2xl border border-[var(--line)] bg-white p-6 shadow-[0_15px_30px_-24px_rgba(10,50,36,0.45)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-24px_rgba(10,50,36,0.5)]"
+            >
+              <p className="text-sm font-bold uppercase tracking-[0.16em] text-[var(--brand-green-700)]">Featured Page</p>
+              <h3 className="mt-2 text-3xl text-[var(--brand-green-900)] sm:text-4xl">Wellness Shop</h3>
+              <p className="mt-3 text-base text-slate-700">Browse vitamins, supplements, and wellness products selected by our pharmacy team.</p>
+              <span className="mt-4 inline-block text-base font-bold text-[var(--brand-green-700)]">Go to Wellness Shop -&gt;</span>
+            </Link>
+          </div>
 
           <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {serviceCards.map((card) => (

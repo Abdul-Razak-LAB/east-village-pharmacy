@@ -7,9 +7,7 @@ import "./globals.css";
 
 const primaryNav = [
   { label: "Home", href: "/" },
-  { label: "Compounding", href: "/compounding" },
   { label: "Services", href: "/services" },
-  { label: "Wellness Shop", href: "/wellness-shop" },
   { label: "For Providers", href: "/consultation" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" }
