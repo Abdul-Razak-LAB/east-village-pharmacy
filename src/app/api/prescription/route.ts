@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { savePrescriptionRequest } from "@/lib/db";
-import { sendPrescriptionSmsAlert } from "@/lib/notifications";
+import { sendPrescriptionEmail, sendPrescriptionSmsAlert } from "@/lib/notifications";
 
 const prescriptionSchema = z.object({
   fullName: z.string().min(2, "Please enter your full name."),
@@ -34,17 +34,25 @@ export async function POST(request: Request) {
       fileName: parsed.data.fileName,
     });
 
-    const smsResult = await Promise.allSettled([
+    const notificationResults = await Promise.allSettled([
+      sendPrescriptionEmail({ fullName, email: parsed.data.email, phone, notes, fileName }),
       sendPrescriptionSmsAlert({ fullName, phone, notes, fileName }),
     ]);
 
-    if (smsResult[0].status === "rejected") {
-      console.error("Prescription SMS alert failed", smsResult[0].reason);
+    const hasFailure = notificationResults.some((result) => result.status === "rejected");
+
+    if (hasFailure) {
+      notificationResults.forEach((result, index) => {
+        if (result.status === "rejected") {
+          const channel = index === 0 ? "email" : "sms";
+          console.error(`Prescription ${channel} notification failed`, result.reason);
+        }
+      });
 
       return NextResponse.json({
         ok: true,
         warning:
-          "Your prescription was submitted, but our SMS alert is temporarily unavailable. We will still process your request — call us at (770) 744-2461 if urgent.",
+          "Your prescription was submitted, but one of our staff alerts is temporarily unavailable. We will still process your request — call us at (770) 744-2461 if urgent.",
       });
     }
 

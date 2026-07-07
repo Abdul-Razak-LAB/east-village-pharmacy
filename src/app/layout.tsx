@@ -13,6 +13,11 @@ const primaryNav = [
   { label: "Contact", href: "/contact" }
 ];
 
+const servicesNavItems = [
+  { label: "Compounding", href: "/compounding" },
+  { label: "Wellness Shop", href: "/wellness-shop" },
+];
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://eastvillagerx.com"),
   title: "East Village Pharmacy",
@@ -67,13 +72,39 @@ export default function RootLayout({
 
               <nav className="hidden items-center gap-4 text-sm font-semibold text-slate-800 lg:flex xl:gap-7 xl:text-[1rem]">
                 {primaryNav.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="border-b-2 border-transparent pb-0.5 transition duration-200 hover:border-[var(--brand-gold-600)] hover:text-[var(--brand-green-700)]"
-                  >
-                    {item.label}
-                  </Link>
+                  item.label === "Services" ? (
+                    <div key={item.label} className="group relative">
+                      <Link
+                        href={item.href}
+                        className="inline-flex items-center gap-1 border-b-2 border-transparent pb-0.5 transition duration-200 hover:border-[var(--brand-gold-600)] hover:text-[var(--brand-green-700)]"
+                      >
+                        <span>{item.label}</span>
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <path d="m6 9 6 6 6-6" />
+                        </svg>
+                      </Link>
+
+                      <div className="invisible absolute left-0 top-full z-50 mt-2 min-w-[220px] rounded-xl border border-[var(--line)] bg-white p-2 opacity-0 shadow-[0_16px_30px_-22px_rgba(4,24,40,0.45)] transition duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                        {servicesNavItems.map((serviceItem) => (
+                          <Link
+                            key={serviceItem.label}
+                            href={serviceItem.href}
+                            className="block rounded-lg px-3 py-2 text-sm font-semibold text-slate-800 transition hover:bg-[var(--surface-muted)] hover:text-[var(--brand-green-700)]"
+                          >
+                            {serviceItem.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="border-b-2 border-transparent pb-0.5 transition duration-200 hover:border-[var(--brand-gold-600)] hover:text-[var(--brand-green-700)]"
+                    >
+                      {item.label}
+                    </Link>
+                  )
                 ))}
               </nav>
 

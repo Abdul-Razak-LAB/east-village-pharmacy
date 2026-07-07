@@ -18,6 +18,14 @@ type ContactMessagePayload = {
   message: string;
 };
 
+type PrescriptionEmailPayload = {
+  fullName: string;
+  email: string;
+  phone: string;
+  notes?: string;
+  fileName?: string;
+};
+
 type SmsCarrier = "att" | "tmobile" | "verizon";
 
 const SMS_GATEWAYS: Record<SmsCarrier, string> = {
@@ -40,10 +48,19 @@ function normalizePhone(phone: string) {
   return phone.replace(/\D/g, "").slice(-10);
 }
 
+function getStaffNotificationEmail() {
+  return (
+    process.env.STAFF_EMAIL_TO ??
+    process.env.CLINIC_EMAIL_TO ??
+    process.env.PRESCRIPTION_EMAIL_TO ??
+    "Info@GreenLeaf GA.onmicrosoft.com"
+  );
+}
+
 export async function sendConsultationEmail(payload: EmailPayload) {
   const resend = getResendClient();
   const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Info@GreenLeaf GA.onmicrosoft.com>";
-  const to = process.env.CLINIC_EMAIL_TO ?? "Info@GreenLeaf GA.onmicrosoft.com";
+  const to = getStaffNotificationEmail();
 
   return resend.emails.send({
     from,
@@ -66,7 +83,7 @@ export async function sendConsultationEmail(payload: EmailPayload) {
 export async function sendContactEmail(payload: ContactMessagePayload) {
   const resend = getResendClient();
   const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Info@GreenLeaf GA.onmicrosoft.com>";
-  const to = process.env.CLINIC_EMAIL_TO ?? "Info@GreenLeaf GA.onmicrosoft.com";
+  const to = getStaffNotificationEmail();
 
   return resend.emails.send({
     from,
@@ -102,6 +119,26 @@ export async function sendPrescriptionSmsAlert(params: {
     to,
     subject: "New Prescription Submission",
     text: `New prescription from ${params.fullName} (${params.phone}).${params.fileName ? ` File: ${params.fileName}.` : ""}${params.notes ? ` Notes: ${params.notes}` : ""} Please review and follow up.`,
+  });
+}
+
+export async function sendPrescriptionEmail(payload: PrescriptionEmailPayload) {
+  const resend = getResendClient();
+  const from = process.env.RESEND_FROM ?? "East Village Pharmacy <Info@GreenLeaf GA.onmicrosoft.com>";
+  const to = getStaffNotificationEmail();
+
+  return resend.emails.send({
+    from,
+    to,
+    subject: `New prescription submission from ${payload.fullName}`,
+    html: `
+      <h2>New Prescription Submission</h2>
+      <p><strong>Name:</strong> ${payload.fullName}</p>
+      <p><strong>Email:</strong> ${payload.email}</p>
+      <p><strong>Phone:</strong> ${payload.phone}</p>
+      <p><strong>Uploaded File:</strong> ${payload.fileName || "Not provided"}</p>
+      <p><strong>Notes:</strong> ${payload.notes || "None"}</p>
+    `,
   });
 }
 

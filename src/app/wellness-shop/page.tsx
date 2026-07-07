@@ -46,7 +46,7 @@ export default function WellnessShopPage() {
           </div>
 
           <div className="order-1 relative min-h-[300px] bg-white lg:order-2">
-            <Image src="/assets/wellness22.png" alt="Wellness products" fill priority className="h-full w-full object-contain object-center" />
+            <Image src="/assets/wellness22.png" alt="Wellness products" fill sizes="(max-width: 1024px) 100vw, 52vw" priority className="h-full w-full object-contain object-center" />
           </div>
         </section>
 

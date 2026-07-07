@@ -6,7 +6,7 @@ import { useState } from "react";
 const contactItems = [
   { title: "Visit Us", body: ["2612 Holcom Bridge Road", "Suites 110", "Alpharetta, GA 30022"] },
   { title: "Call Us", body: ["(770) 744-2461"] },
-  { title: "Email Us", body: ["Info@GreenLeaf GA.onmicrosoft.com"] },
+  { title: "Email Us", body: ["Info@GreenLeafGA.onmicrosoft.com"] },
   { title: "Hours of Operation", body: ["Mon - Fri: 9:00 AM - 7:00 PM", "Saturday: 10:00 AM - 4:00 PM", "Sunday: Closed"] },
 ];
 
@@ -113,7 +113,7 @@ export default function ContactPage() {
           </div>
 
           <div className="order-1 relative min-h-[220px] sm:min-h-[300px] lg:order-2">
-            <Image src="/assets/contactUs.png" alt="Contact visual" fill priority className="h-full w-full object-contain object-center" />
+            <Image src="/assets/contactUs.png" alt="Contact visual" fill sizes="(max-width: 1024px) 100vw, 52vw" priority className="h-full w-full object-contain object-center" />
           </div>
         </section>
 
@@ -187,16 +187,19 @@ export default function ContactPage() {
                           <div className="min-w-0 flex-1">
                             <h3 className="text-base font-semibold text-[var(--brand-green-900)]">{item.title}</h3>
                             {item.body.map((line) => (
-                              <p
-                                key={line}
-                                className={`text-slate-700 ${
-                                  item.title === "Email Us"
-                                    ? "break-words text-[13px] leading-snug sm:text-sm"
-                                    : "break-words text-sm"
-                                }`}
-                              >
-                                {line}
-                              </p>
+                              item.title === "Email Us" ? (
+                                <a
+                                  key={line}
+                                  href="mailto:Info@GreenLeafGA.onmicrosoft.com?subject=East%20Village%20Pharmacy%20Inquiry&body=From%3A%20%0ATo%3A%20Info%40GreenLeafGA.onmicrosoft.com%0ASubject%3A%20East%20Village%20Pharmacy%20Inquiry%0A%0AMessage%3A%20"
+                                  className="break-words text-[13px] leading-snug text-slate-700 underline-offset-2 hover:underline sm:text-sm"
+                                >
+                                  {line}
+                                </a>
+                              ) : (
+                                <p key={line} className="break-words text-sm text-slate-700">
+                                  {line}
+                                </p>
+                              )
                             ))}
                           </div>
                         </div>
@@ -234,7 +237,7 @@ export default function ContactPage() {
         </section>
 
         <section className="relative mt-4 overflow-hidden rounded-2xl border border-[#d8ded5]">
-          <Image src="/assets/welcome.png" alt="Pharmacy care background" fill className="h-full w-full object-contain object-center" />
+          <Image src="/assets/welcome.png" alt="Pharmacy care background" fill sizes="(max-width: 1024px) 100vw, 50vw" className="h-full w-full object-contain object-center" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#f3f6f0]/92 via-[#f3f6f0]/85 to-[#eaf1e6]/90" />
 
           <div className="relative grid gap-3 p-4 md:grid-cols-2 xl:grid-cols-4">

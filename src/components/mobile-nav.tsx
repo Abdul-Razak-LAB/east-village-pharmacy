@@ -70,14 +70,42 @@ export default function MobileNav({ items }: MobileNavProps) {
       <div className="absolute right-0 top-12 z-50 w-64 overflow-hidden rounded-xl border border-[var(--line)] bg-white shadow-[0_14px_28px_-16px_rgba(4,24,40,0.4)]">
         <nav className="grid">
           {items.map((item) => (
-            <Link
-              key={`${item.label}-mobile-menu`}
-              href={item.href}
-              onClick={closeMenu}
-              className="border-b border-[var(--line)] px-4 py-3 text-sm font-semibold text-slate-800 transition duration-200 hover:bg-[var(--surface-muted)] hover:text-[var(--brand-green-700)] last:border-b-0"
-            >
-              {item.label}
-            </Link>
+            item.label === "Services" ? (
+              <div key={`${item.label}-mobile-menu`} className="border-b border-[var(--line)]">
+                <Link
+                  href={item.href}
+                  onClick={closeMenu}
+                  className="block px-4 py-3 text-sm font-semibold text-slate-800 transition duration-200 hover:bg-[var(--surface-muted)] hover:text-[var(--brand-green-700)]"
+                >
+                  {item.label}
+                </Link>
+                <div className="grid gap-1 px-4 pb-3">
+                  <Link
+                    href="/compounding"
+                    onClick={closeMenu}
+                    className="rounded-lg bg-[#f6f9f4] px-3 py-2 text-xs font-semibold text-[var(--brand-green-800)] transition hover:bg-[#edf4e9]"
+                  >
+                    Compounding
+                  </Link>
+                  <Link
+                    href="/wellness-shop"
+                    onClick={closeMenu}
+                    className="rounded-lg bg-[#f6f9f4] px-3 py-2 text-xs font-semibold text-[var(--brand-green-800)] transition hover:bg-[#edf4e9]"
+                  >
+                    Wellness Shop
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={`${item.label}-mobile-menu`}
+                href={item.href}
+                onClick={closeMenu}
+                className="border-b border-[var(--line)] px-4 py-3 text-sm font-semibold text-slate-800 transition duration-200 hover:bg-[var(--surface-muted)] hover:text-[var(--brand-green-700)] last:border-b-0"
+              >
+                {item.label}
+              </Link>
+            )
           ))}
         </nav>
       </div>

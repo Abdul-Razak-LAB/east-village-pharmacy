@@ -28,7 +28,7 @@ copy .env.example .env.local
 - `DATABASE_URL`: Neon pooled connection string.
 - `RESEND_API_KEY`: API key from Resend.
 - `RESEND_FROM`: Sender identity (must be verified in Resend for production).
-- `CLINIC_EMAIL_TO`: Destination inbox for consultation alerts.
+- `STAFF_EMAIL_TO`: Destination inbox for contact, consultation, and prescription alerts.
 
 4. Run locally:
 
@@ -44,8 +44,10 @@ Visit `http://localhost:3000`.
 2. API route validates payload with Zod.
 3. Request is inserted into Neon table `consultation_requests`.
 4. Resend sends:
-	- HTML email to `CLINIC_EMAIL_TO`.
+	- HTML email to `STAFF_EMAIL_TO`.
 	- SMS gateway email for optional carrier selections (`AT&T`, `T-Mobile`, `Verizon`).
+
+Legacy fallback env vars are still supported: `CLINIC_EMAIL_TO` and `PRESCRIPTION_EMAIL_TO`.
 
 ## Notes
 

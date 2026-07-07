@@ -53,7 +53,7 @@ export default function ConsultationPage() {
             </div>
 
             <div className="relative mb-6 min-h-[260px] overflow-hidden rounded-2xl border border-[var(--line)] lg:hidden">
-              <Image src="/assets/book-consultation.png" alt="Consultation visual" fill priority className="h-full w-full object-contain object-center" />
+              <Image src="/assets/book-consultation.png" alt="Consultation visual" fill sizes="(max-width: 1024px) 100vw, 52vw" priority className="h-full w-full object-contain object-center" />
             </div>
 
             <div className="hidden lg:block">
@@ -80,7 +80,7 @@ export default function ConsultationPage() {
           </div>
 
           <div className="relative hidden min-h-[320px] lg:block">
-            <Image src="/assets/book-consultation.png" alt="Consultation visual" fill priority className="h-full w-full object-contain object-center" />
+            <Image src="/assets/book-consultation.png" alt="Consultation visual" fill sizes="(max-width: 1024px) 100vw, 52vw" priority className="h-full w-full object-contain object-center" />
           </div>
         </section>
 
@@ -144,7 +144,12 @@ export default function ConsultationPage() {
           </div>
           <div>
             <p className="text-lg">(770) 744-2461</p>
-            <p className="mt-1 text-lg">Info@GreenLeaf GA.onmicrosoft.com</p>
+            <a
+              href="mailto:Info@GreenLeafGA.onmicrosoft.com?subject=East%20Village%20Pharmacy%20Consultation&body=From%3A%20%0ATo%3A%20Info%40GreenLeafGA.onmicrosoft.com%0ASubject%3A%20East%20Village%20Pharmacy%20Consultation%0A%0AMessage%3A%20"
+              className="mt-1 inline-block text-lg underline-offset-2 hover:underline"
+            >
+              Info@GreenLeafGA.onmicrosoft.com
+            </a>
           </div>
           <a href="/consultation" className="btn-silentech-secondary px-6 py-3 text-lg">
             Request a Consultation
